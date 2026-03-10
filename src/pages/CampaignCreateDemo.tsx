@@ -593,8 +593,8 @@ export default function CampaignCreateDemo() {
         </div>
       </div>
 
-      {/* Section 5: Eligibility Rules */}
-      <div className="bui-box">
+      {/* Section 5: Eligibility Rules (hidden for transactional campaigns) */}
+      {purpose !== "transactional" && <div className="bui-box">
         <div
           style={{
             fontWeight: 700,
@@ -725,7 +725,7 @@ export default function CampaignCreateDemo() {
           </button>
           <button className="btn btn-secondary">Import Audience</button>
         </div>
-      </div>
+      </div>}
 
       {/* Section 6: Experiments */}
       <div className="bui-box">
