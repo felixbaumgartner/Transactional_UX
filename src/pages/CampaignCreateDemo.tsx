@@ -424,23 +424,6 @@ export default function CampaignCreateDemo() {
                       </option>
                     </select>
                   </div>
-                  {selectedTrigger && (
-                    <div
-                      className="tier-selection-appear"
-                      style={{
-                        marginTop: 12,
-                        padding: 12,
-                        background: "var(--color-green-100)",
-                        borderRadius: "var(--radius-sm)",
-                        color: "var(--color-green-600)",
-                        fontSize: 13,
-                      }}
-                    >
-                      <strong>Trigger linked.</strong> The pipeline will be set
-                      to "Trigger: {selectedTrigger}" and the transactional
-                      classification from the trigger will be inherited.
-                    </div>
-                  )}
                 </div>
               )}
 
@@ -476,8 +459,8 @@ export default function CampaignCreateDemo() {
         )}
       </div>
 
-      {/* Section 3: Send Configuration */}
-      <div className="bui-box">
+      {/* Section 3: Send Configuration (hidden for transactional campaigns) */}
+      {purpose !== "transactional" && <div className="bui-box">
         <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 16 }}>
           Send Configuration
         </div>
@@ -495,24 +478,14 @@ export default function CampaignCreateDemo() {
             <label className="form-label">Pipeline</label>
             <select
               className="form-select"
-              value={
-                purpose === "transactional" && selectedTrigger
-                  ? `trigger:${selectedTrigger}`
-                  : pipeline
-              }
+              value={pipeline}
               onChange={(e) => setPipeline(e.target.value)}
-              disabled={purpose === "transactional" && !!selectedTrigger}
             >
               <option value="">Select pipeline...</option>
               <option value="scheduled_daily_emk">Scheduled: Daily EMK</option>
               <option value="scheduled_daily_emk_test">
                 Scheduled: Daily EMK Test
               </option>
-              {purpose === "transactional" && selectedTrigger && (
-                <option value={`trigger:${selectedTrigger}`}>
-                  Trigger: {selectedTrigger}
-                </option>
-              )}
             </select>
           </div>
 
@@ -552,7 +525,7 @@ export default function CampaignCreateDemo() {
             </div>
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* Section 4: Base Content */}
       <div className="bui-box">
