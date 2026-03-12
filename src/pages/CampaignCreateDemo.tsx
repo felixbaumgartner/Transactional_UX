@@ -201,7 +201,7 @@ export default function CampaignCreateDemo() {
             Cancel
           </button>
           <button
-            className="btn btn-primary btn-large"
+            className="btn btn-primary"
             disabled={!campaignName || !purpose}
             onClick={handleSave}
           >
@@ -281,53 +281,59 @@ export default function CampaignCreateDemo() {
             </select>
           </div>
 
-          {/* Vouchers */}
-          <div className="form-group">
-            <label className="form-label">
-              Campaign Uses Vouchers or Coupons
-            </label>
-            <select
-              className="form-select"
-              value={usesVouchers}
-              onChange={(e) => setUsesVouchers(e.target.value)}
-            >
-              <option value="">Please select</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </div>
+          {/* Vouchers (hidden for transactional) */}
+          {purpose !== "transactional" && (
+            <div className="form-group">
+              <label className="form-label">
+                Campaign Uses Vouchers or Coupons
+              </label>
+              <select
+                className="form-select"
+                value={usesVouchers}
+                onChange={(e) => setUsesVouchers(e.target.value)}
+              >
+                <option value="">Please select</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+          )}
 
-          {/* Holdout Vertical */}
-          <div className="form-group">
-            <label className="form-label">Holdout Vertical</label>
-            <select
-              className="form-select"
-              value={holdoutVertical}
-              onChange={(e) => setHoldoutVertical(e.target.value)}
-            >
-              <option value="">Select vertical...</option>
-              <option>Hotels</option>
-              <option>Flights</option>
-              <option>Cars</option>
-              <option>Attractions</option>
-            </select>
-          </div>
+          {/* Holdout Vertical (hidden for transactional) */}
+          {purpose !== "transactional" && (
+            <div className="form-group">
+              <label className="form-label">Holdout Vertical</label>
+              <select
+                className="form-select"
+                value={holdoutVertical}
+                onChange={(e) => setHoldoutVertical(e.target.value)}
+              >
+                <option value="">Select vertical...</option>
+                <option>Hotels</option>
+                <option>Flights</option>
+                <option>Cars</option>
+                <option>Attractions</option>
+              </select>
+            </div>
+          )}
 
-          {/* Holdout Funnel */}
-          <div className="form-group">
-            <label className="form-label">Holdout Funnel</label>
-            <select
-              className="form-select"
-              value={holdoutFunnel}
-              onChange={(e) => setHoldoutFunnel(e.target.value)}
-            >
-              <option value="">Select funnel...</option>
-              <option>Acquisition</option>
-              <option>Booking</option>
-              <option>Post-booking</option>
-              <option>Loyalty</option>
-            </select>
-          </div>
+          {/* Holdout Funnel (hidden for transactional) */}
+          {purpose !== "transactional" && (
+            <div className="form-group">
+              <label className="form-label">Holdout Funnel</label>
+              <select
+                className="form-select"
+                value={holdoutFunnel}
+                onChange={(e) => setHoldoutFunnel(e.target.value)}
+              >
+                <option value="">Select funnel...</option>
+                <option>Acquisition</option>
+                <option>Booking</option>
+                <option>Post-booking</option>
+                <option>Loyalty</option>
+              </select>
+            </div>
+          )}
         </div>
 
         {/* Transactional trigger flow — shown when questionnaire determined transactional */}
@@ -881,7 +887,7 @@ export default function CampaignCreateDemo() {
           Cancel
         </button>
         <button
-          className="btn btn-primary btn-large"
+          className="btn btn-primary"
           disabled={!campaignName || !purpose}
           onClick={handleSave}
         >
